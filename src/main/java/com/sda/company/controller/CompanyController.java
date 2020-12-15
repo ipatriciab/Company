@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/company")
@@ -32,4 +33,23 @@ public class CompanyController {
 //        aici facem o metoda de tip get - nu are body
         return ResponseEntity.ok(companyService.getAll());
     }
+
+
+    @DeleteMapping("/deleteById")
+    public void DeleteById(Integer id) {
+        companyService.DeleteById(id);
+
+    }
+
+    @GetMapping("/findById")
+    public Optional<Company> findById(Integer id) {
+        return companyService.findById(id);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Company> update(@RequestBody Company company){
+        return ResponseEntity.ok(companyService.update(company));
+    }
+
+
 }

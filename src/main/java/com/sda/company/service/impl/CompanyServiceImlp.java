@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompanyServiceImlp implements CompanyService {
@@ -26,5 +27,21 @@ public class CompanyServiceImlp implements CompanyService {
     @Override
     public List<Company> getAll() {
         return (List<Company>) companyRepository.findAll();
+    }
+
+    @Override
+    public void DeleteById(Integer id) {
+        companyRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Company> findById(Integer id) {
+        return companyRepository.findById(id);
+    }
+
+    // am folosit Optional sa verifice daca exista sau nu obiectul
+    @Override
+    public Company update(Company company) {
+        return  companyRepository.save(company);
     }
 }

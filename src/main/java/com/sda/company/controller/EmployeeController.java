@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/employee")
@@ -27,5 +28,19 @@ public class EmployeeController {
     @GetMapping("/getAll")
     public ResponseEntity<List<Employee>> getAll(){
         return ResponseEntity.ok(employeeService.getAll());
+    }
+    @DeleteMapping("/deleteById")
+    public void deleteById(Integer id) {
+        employeeService.deleteById(id);
+    }
+
+    @GetMapping("/findById")
+    public Optional<Employee> findById(Integer id) {
+        return employeeService.findById(id);
+    }
+
+    @PutMapping("/update")
+    public  ResponseEntity<Employee> update(@RequestBody Employee employee){
+        return ResponseEntity.ok(employeeService.update(employee));
     }
 }

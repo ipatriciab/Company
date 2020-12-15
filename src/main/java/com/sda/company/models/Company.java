@@ -1,5 +1,8 @@
 package com.sda.company.models;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "company")
@@ -20,6 +23,19 @@ public class Company {
 
     @Column(name = "registration_number")
     private Long registrationNumber;
+
+
+    @OneToMany(mappedBy = "employee")
+    private List<Employee> employeeList;
+
+    // Getters and Setters
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
 
     public Integer getId() {
         return id;

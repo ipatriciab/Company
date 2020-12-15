@@ -1,5 +1,7 @@
 package com.sda.company.models;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "employee")
@@ -26,6 +28,17 @@ public class Employee {
 
     @Column(name = "personal_numeric_code")
     private Long personalNumericCode;
+
+    @ManyToOne
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 
     public Integer getId() {
         return id;
